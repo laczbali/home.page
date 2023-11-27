@@ -1,9 +1,17 @@
 import express from 'express';
 import path from 'path';
 import { renderTemplate } from './utils/Templater.js';
+import https from 'https';
+import http from 'http';
+import fs from 'fs';
 
 const CWD = path.join(path.resolve(), 'src');
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 80;
+const PORT_SSL = process.env.PORT_SSL || 443;
+const OPTIONS = {
+  // key: fs.readFileSync("/some/path/my-site-key.pem"),
+  // cert: fs.readFileSync("/some/path/chain.pem")
+};
 
 const app = express()
 
@@ -30,5 +38,6 @@ app.use('/static', express.static(path.join(CWD, 'static'), {
   index: false,
 }));
 
-// start app on specified port
-app.listen(PORT, () => console.log(`server is running - http://127.0.0.1`));
+// start app on specified ports
+http.createServer(app).listen(PORT, () => console.log(`server is running - http://127.0.0.1`));
+https.createServer(OPTIONS, app).listen(PORT_SSL, () => console.log(`server is running - https:///127.0.0.1`));

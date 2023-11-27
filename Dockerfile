@@ -1,14 +1,19 @@
-# Env setup
+# baic setup
 FROM node:18
 WORKDIR /app
 
-ENV PORT=80
 EXPOSE 80
+EXPOSE 443
+
+CMD npm run start
+
+# ssl setup
+RUN apt update
+RUN apt install certbot -y
 
 # Install app dependencies
 COPY package.*json ./
 RUN npm install
 
-# Run the app
+# Copy app code
 COPY src ./src
-CMD npm run start
