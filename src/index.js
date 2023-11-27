@@ -11,6 +11,7 @@ const PORT_SSL = process.env.PORT_SSL || 443;
 const OPTIONS = {
   // key: fs.readFileSync("/some/path/my-site-key.pem"),
   // cert: fs.readFileSync("/some/path/chain.pem")
+  //https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
 };
 
 const app = express()
