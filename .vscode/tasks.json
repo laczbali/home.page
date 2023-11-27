@@ -10,7 +10,7 @@
             // - only src is changed (docker-run maps src to container)
             "label": "docker-build",
             "type": "shell",
-            "command": "docker build -t blaczk0/home-blaczko:1.0 .",
+            "command": "docker build -t blaczk0/homepage:1.0 .",
             "problemMatcher": []
         },
         {
@@ -20,14 +20,14 @@
             // Maps local port 8080 to container's port 80
             "label": "docker-run",
             "type": "shell",
-            "command": "docker run -p 8080:80 --name home-blaczko -v ${workspaceFolder}\\src:/app/src blaczk0/home-blaczko:1.0 npm run watch",
+            "command": "docker run -p 8080:80 --name homepage -v ${workspaceFolder}\\src:/app/src blaczk0/homepage:1.0 npm run watch",
             "isBackground": true,
             "problemMatcher": []
         },
         {
             "label": "docker-remove",
             "type": "shell",
-            "command": "docker rm -f home-blaczko",
+            "command": "docker rm -f homepage",
             "problemMatcher": []
         }
     ]
