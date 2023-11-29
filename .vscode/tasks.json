@@ -10,7 +10,7 @@
             // - only src is changed (docker-run maps src to container)
             "label": "docker-build",
             "type": "shell",
-            "command": "docker build -t blaczk0/homepage:1.0 .",
+            "command": "docker build -t blaczk0/homepage:1.0 -f deploy\\Dockerfile.frontend .",
             "problemMatcher": []
         },
         {
@@ -28,6 +28,12 @@
             "label": "docker-remove",
             "type": "shell",
             "command": "docker rm -f homepage",
+            "problemMatcher": []
+        },
+        {
+            "label": "docker-build-certbot",
+            "type": "shell",
+            "command": "docker build -t blaczk0/certbot:1.0 -f deploy\\Dockerfile.certbot .",
             "problemMatcher": []
         }
     ]

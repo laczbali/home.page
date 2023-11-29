@@ -1,0 +1,13 @@
+FROM node:18
+WORKDIR /app
+
+ENV SSL_KEY_FULLPATH=/app/certs/privkey.pem
+ENV SSL_CERT_FULLPATH=/app/certs/fullchain.pem
+
+EXPOSE 443
+CMD npm run start
+
+COPY package.*json ./
+RUN npm install
+
+COPY src ./src

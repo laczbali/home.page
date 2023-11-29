@@ -1,0 +1,15 @@
+FROM node:18
+WORKDIR /app
+
+EXPOSE 80
+
+RUN apt update
+RUN apt install cron -y
+RUN apt install certbot -y
+
+RUN crontab -l | { cat; echo "PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"; } | crontab -
+RUN crontab -l | { cat; echo "LD_LIBRARY_PATH=/usr/local/lib"; } | crontab -
+
+CMD ["bash", "/app/certbot.startup.sh"]
+COPY ./deploy/certbot.startup.sh /app/certbot.startup.sh
+RUN chmod +x /app/certbot.startup.sh

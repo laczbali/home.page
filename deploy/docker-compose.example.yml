@@ -1,0 +1,28 @@
+version: '3'
+name: 'myapp'
+services:
+  
+  node:
+    image: 'blaczk0/homepage:1.0'
+    restart: always
+    ports:
+      - "443:443"
+    environment:
+      SSL_KEY_FULLPATH: /app/certs/live/your.site.com/privkey.pem
+      SSL_CERT_FULLPATH: /app/certs/live/your.site.com/fullchain.pem
+    volumes:
+      - certs:/app/certs
+
+  certbot:
+    image: blaczk0/certbot
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      - CERTBOT_EMAIL=your.email@host.com
+      - CERTBOT_DOMAIN=your.site.com
+    volumes:
+      - certs:/etc/letsencrypt
+
+volumes:
+  certs:
