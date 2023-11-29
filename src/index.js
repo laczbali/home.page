@@ -55,4 +55,4 @@ app.use('/static', express.static(path.join(CWD, 'static'), {
 }));
 
 // start app on specified port
-https.createServer(httpOptions, app).listen(PORT_SSL, () => console.log(`server is running - https:///127.0.0.1`));
+https.createServer(httpOptions, app).listen(PORT_SSL, () => console.log(`server is running - ${new Date().toISOString()}`));
